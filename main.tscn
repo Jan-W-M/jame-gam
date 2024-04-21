@@ -1,11 +1,25 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3e7va4jkujsr"]
+[gd_scene load_steps=10 format=3 uid="uid://d3e7va4jkujsr"]
 
 [ext_resource type="PackedScene" uid="uid://bv0r7a6tgcrx6" path="res://Player/player.tscn" id="1_2hba2"]
-[ext_resource type="Script" path="res://Portal.gd" id="2_rq4kf"]
+[ext_resource type="Script" path="res://Portals/Orange_Portal.gd" id="2_53sj1"]
+[ext_resource type="Script" path="res://Portals/Blue_Portal.gd" id="2_wl8xg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r44m5"]
+albedo_color = Color(0.773769, 0.243098, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_d2ljs"]
+material = SubResource("StandardMaterial3D_r44m5")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vfpil"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaixa"]
+albedo_color = Color(0, 0.648445, 0.6487, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kve2i"]
+material = SubResource("StandardMaterial3D_vaixa")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_65g0p"]
 points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 
 [node name="Node3D" type="Node3D"]
@@ -28,7 +42,7 @@ shadow_enabled = true
 
 [node name="Orange_Portal" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -1)
-script = ExtResource("2_rq4kf")
+script = ExtResource("2_53sj1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Orange_Portal"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
@@ -38,4 +52,26 @@ mesh = SubResource("PlaneMesh_d2ljs")
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_vfpil")
 
+[node name="Orange_Portal_Entered" type="Timer" parent="Orange_Portal"]
+wait_time = 0.1
+
+[node name="Blue_Portal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
+script = ExtResource("2_wl8xg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Blue_Portal"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_kve2i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Blue_Portal"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_65g0p")
+
+[node name="Blue_Portal_Entered" type="Timer" parent="Blue_Portal"]
+wait_time = 0.1
+one_shot = true
+
 [connection signal="body_entered" from="Orange_Portal" to="Orange_Portal" method="_on_body_entered"]
+[connection signal="timeout" from="Orange_Portal/Orange_Portal_Entered" to="Blue_Portal" method="_on_orange_portal_entered_timeout"]
+[connection signal="body_entered" from="Blue_Portal" to="Blue_Portal" method="_on_body_entered"]
+[connection signal="timeout" from="Blue_Portal/Blue_Portal_Entered" to="Orange_Portal" method="_on_blue_portal_entered_timeout"]

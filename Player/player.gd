@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@export var teleportable = true
 
 const JUMP_VELOCITY = 4.5
 @export var jump_count = 2

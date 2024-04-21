@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdxuk2opve0dq"]
+
+[ext_resource type="Script" path="res://Portals/Blue_Portal.gd" id="1_egafi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaixa"]
+albedo_color = Color(0, 0.648445, 0.6487, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kve2i"]
+material = SubResource("StandardMaterial3D_vaixa")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_65g0p"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[node name="Blue_Portal" type="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 2, -3)
+script = ExtResource("1_egafi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_kve2i")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_65g0p")
+
+[node name="Blue_Portal_Entered" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
