@@ -1,14 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://bek4tocd84bj2"]
+[gd_scene load_steps=5 format=3 uid="uid://d3e7va4jkujsr"]
 
-[ext_resource type="PackedScene" uid="uid://crq1a0qrmd6xx" path="res://Player/player.tscn" id="1_4ny3v"]
+[ext_resource type="PackedScene" uid="uid://bv0r7a6tgcrx6" path="res://Player/player.tscn" id="1_2hba2"]
+[ext_resource type="Script" path="res://Portal.gd" id="2_rq4kf"]
 
-[node name="Main" type="Node3D"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_d2ljs"]
 
-[node name="Player" parent="." instance=ExtResource("1_4ny3v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.54552, 0)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_vfpil"]
+points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 9.57312, 5)
+[node name="Node3D" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_2hba2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 use_collision = true
+size = Vector3(10, 1, 10)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.707107, 0.707107, 0, 0.707107, 0.707107, -1, 3.09086e-08, -3.09086e-08, 0, 7, 0)
+shadow_enabled = true
+
+[node name="DirectionalLight3D2" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.258819, 0.683013, -0.683013, 0, 0.707107, 0.707107, 0.965926, 0.183013, -0.183013, 0, 7, 0)
+shadow_enabled = true
+
+[node name="Orange_Portal" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -1)
+script = ExtResource("2_rq4kf")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Orange_Portal"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("PlaneMesh_d2ljs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Orange_Portal"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_vfpil")
+
+[connection signal="body_entered" from="Orange_Portal" to="Orange_Portal" method="_on_body_entered"]
