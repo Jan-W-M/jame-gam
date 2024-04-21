@@ -12,7 +12,6 @@ material = SubResource("StandardMaterial3D_r44m5")
 points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
 
 [node name="Orange_Portal" type="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2, -1)
 script = ExtResource("1_knubs")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -24,6 +23,7 @@ transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 
 shape = SubResource("ConvexPolygonShape3D_vfpil")
 
 [node name="Orange_Portal_Entered" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Orange_Portal_Entered" to="." method="_on_orange_portal_entered_timeout"]

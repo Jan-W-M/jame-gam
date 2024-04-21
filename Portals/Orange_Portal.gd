@@ -18,8 +18,8 @@ func _on_body_entered(body):
 		player.position = blueportalpos
 		$"../Player".teleportable = false
 		$Orange_Portal_Entered.start()
-
-
-func _on_blue_portal_entered_timeout():
+	print($"../Player".teleportable)
+	
+func _on_orange_portal_entered_timeout():
 	$"../Player".teleportable = true
 	print("teleportable")
