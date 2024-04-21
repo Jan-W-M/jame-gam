@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bek4tocd84bj2"]
+
+[ext_resource type="PackedScene" uid="uid://crq1a0qrmd6xx" path="res://Player/player.tscn" id="1_4ny3v"]
+
+[node name="Main" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_4ny3v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.54552, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 9.57312, 5)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
