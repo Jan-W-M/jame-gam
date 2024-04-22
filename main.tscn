@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://d3e7va4jkujsr"]
+[gd_scene load_steps=8 format=3 uid="uid://d3e7va4jkujsr"]
 
 [ext_resource type="PackedScene" uid="uid://bv0r7a6tgcrx6" path="res://Player/player.tscn" id="1_2hba2"]
 [ext_resource type="PackedScene" uid="uid://cdxuk2opve0dq" path="res://Portals/blue_portal.tscn" id="2_ub2tb"]
 [ext_resource type="PackedScene" uid="uid://cds7j3q8ca1ds" path="res://Portals/orange_portal.tscn" id="3_5qmld"]
 [ext_resource type="PackedScene" uid="uid://35q7j561c6gx" path="res://Traps/leg_hurt.tscn" id="4_mx30t"]
 [ext_resource type="PackedScene" uid="uid://x4uq6ddy5ocp" path="res://Traps/blindness.tscn" id="5_2aljy"]
+[ext_resource type="PackedScene" uid="uid://c4rqt4tnao8vr" path="res://items/item_1.tscn" id="6_w80e3"]
+[ext_resource type="PackedScene" uid="uid://bavm00f4mkypv" path="res://items/item_2.tscn" id="7_prqsp"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -12,7 +14,6 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Floor" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
 use_collision = true
 size = Vector3(10, 1, 10)
 
@@ -35,6 +36,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.58074, 1.41816, 4.65501)
 
 [node name="Blindness" parent="." instance=ExtResource("5_2aljy")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+
+[node name="Item1" parent="." instance=ExtResource("6_w80e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1, -4)
+
+[node name="Item2" parent="." instance=ExtResource("7_prqsp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -3)
 
 [connection signal="body_entered" from="Leg_Hurt" to="Player" method="_on_leg_hurt_body_entered"]
 [connection signal="body_entered" from="Blindness" to="Player" method="_on_blindness_body_entered"]

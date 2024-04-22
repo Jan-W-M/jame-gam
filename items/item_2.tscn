@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://bavm00f4mkypv"]
+
+[ext_resource type="Script" path="res://items/Item.gd" id="1_tg7hh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ebcm5"]
+albedo_color = Color(0.364706, 0.109804, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7m71s"]
+material = SubResource("StandardMaterial3D_ebcm5")
+size = Vector3(0.5, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifav4"]
+albedo_color = Color(1, 1, 0.164706, 1)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dy8wc"]
+points = PackedVector3Array(0.249989, 0.25, 0.477152, -0.24996, -0.25, -0.492544, 0.25, -0.242074, -0.477173, -0.24996, -0.25, 0.492544, -0.242025, 0.25, -0.477152, 0.25, -0.242074, 0.477173, -0.242025, 0.25, 0.477152, 0.249989, 0.25, -0.477152)
+
+[node name="Item2" type="RigidBody3D"]
+script = ExtResource("1_tg7hh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_7m71s")
+skeleton = NodePath("../../Item2")
+surface_material_override/0 = SubResource("StandardMaterial3D_ifav4")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("ConvexPolygonShape3D_dy8wc")
