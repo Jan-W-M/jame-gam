@@ -3,8 +3,11 @@ extends CharacterBody3D
 @export var teleportable = true
 
 const JUMP_VELOCITY = 4.5
-@export var jump_count = 2
+@export var max_jump_count = 2
 @export var speed = 5.0
+@export var blind = false
+
+var jump_count = 0
 var run_speed_mult = 1.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -18,7 +21,7 @@ func _physics_process(delta):
 	if is_on_floor():
 		jump_count = 0
 	
-	if Input.is_action_just_pressed("ui_accept") and jump_count <2:
+	if Input.is_action_just_pressed("ui_accept") and jump_count <max_jump_count:
 		jump_count +=1
 		velocity.y = JUMP_VELOCITY
 	
@@ -38,7 +41,21 @@ func _physics_process(delta):
 
 	move_and_slide()
 	if Input.is_action_just_pressed("reset"):
+		reset()
+
+func reset():
 		var center =Vector3.ZERO
 		center.y =1
+		speed = 5
+		max_jump_count = 2
+		$Camera3D.far = 4000
 		self.position =center
+		$MeshInstance3D.hide()
 
+func _on_leg_hurt_body_entered(body):
+	speed = 1
+	max_jump_count = 0
+
+
+func _on_blindness_body_entered(body):
+	$MeshInstance3D.show()

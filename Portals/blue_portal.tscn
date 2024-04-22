@@ -1,7 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cdxuk2opve0dq"]
 
 [ext_resource type="Script" path="res://Portals/Blue_Portal.gd" id="1_egafi"]
-[ext_resource type="Script" path="res://Portals/Blue_Portal_Entered.gd" id="2_dwwnh"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaixa"]
 albedo_color = Color(0, 0.648445, 0.6487, 1)
@@ -11,6 +10,20 @@ material = SubResource("StandardMaterial3D_vaixa")
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_65g0p"]
 points = PackedVector3Array(-1, 0, -1, -1, 0, 1, 1, 0, -1, 1, 0, 1)
+
+[sub_resource type="GDScript" id="GDScript_efn4v"]
+script/source = "extends Timer
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
 
 [node name="Blue_Portal" type="Area3D"]
 script = ExtResource("1_egafi")
@@ -26,7 +39,7 @@ shape = SubResource("ConvexPolygonShape3D_65g0p")
 [node name="Blue_Portal_Entered" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
-script = ExtResource("2_dwwnh")
+script = SubResource("GDScript_efn4v")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Blue_Portal_Entered" to="." method="_on_blue_portal_entered_timeout"]
