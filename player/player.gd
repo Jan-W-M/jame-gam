@@ -46,6 +46,7 @@ func _process(delta: float) -> void:
 		input *= 1.1
 		
 	#print(input)
+	print(is_on_floor)
 	apply_central_force(twist_pivot.basis * input * speed * delta)
 	cur_height = global_position.y
 	
