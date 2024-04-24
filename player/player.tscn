@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://fhvxvuig6kg"]
+[gd_scene load_steps=6 format=3 uid="uid://fhvxvuig6kg"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_ployj"]
 [ext_resource type="PackedScene" uid="uid://ccto4e0kqxahm" path="res://player/tiplouf_3.tscn" id="2_ua6an"]
+[ext_resource type="Script" path="res://player/roatate_player.gd" id="3_ije4h"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_1s0ig"]
 points = PackedVector3Array(13.5701, 15.0903, 1.43025, -15.3777, -1.6695, 1.43025, 7.47394, -29.0903, 3.71581, 7.47394, -29.0903, -5.42645, 2.90104, 15.0903, -6.18865, -7.75838, -27.5632, -5.42645, 2.90104, 15.0903, 4.47801, 15.0933, -1.6695, -6.18865, -7.75838, -27.5632, 3.71581, 15.0933, -1.6695, 4.47801, 11.2836, -27.5632, -3.14088, 17.3766, 11.2774, -3.14088, -13.0913, -1.6695, -5.42645, -13.0913, -1.6695, 3.71581, 17.3766, -1.6695, 1.43025, 2.90104, 17.3762, -3.14088, 11.2836, -27.5632, 1.43025, -9.28482, -27.5632, -3.14088, 17.3766, 11.2774, 1.43025, -13, 2.11316, -2.80905, 2.90104, 17.3762, 1.43025, -5.47193, -29.0903, 3.71581, -3.19189, 4.42455, 4.47801, 9.00038, 15.0903, -5.42645, -3.19189, 4.42455, -6.18865, 9.76039, 15.0903, 3.71581, -5.47193, -29.0903, -5.42645, -9.28482, -27.5632, 1.43025, -13, 2.11316, 1.09841, 14.0866, 7.85368, -5.8077, 13.5701, 15.0903, -3.14088, 13.8298, 7.56226, 3.9999)
@@ -16,6 +17,7 @@ script = ExtResource("1_ployj")
 
 [node name="tiplouf3" parent="." instance=ExtResource("2_ua6an")]
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
+script = ExtResource("3_ije4h")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 0.03, 0, 0, 0)
