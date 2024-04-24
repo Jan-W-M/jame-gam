@@ -12,6 +12,7 @@ var jump_cooldown = 0 #i should add a new mesh to check if on floor, this is stu
 var is_on_floor = false
 var is_falling = false
 var cur_height
+var input := Vector3.ZERO
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 
@@ -23,7 +24,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 
 
-	var input := Vector3.ZERO
+
 	
 	input.x = Input.get_axis("left", "right")
 	input.z = Input.get_axis("forward", "back")
@@ -49,8 +50,9 @@ func _process(delta: float) -> void:
 	print(is_on_floor)
 	apply_central_force(twist_pivot.basis * input * speed * delta)
 	cur_height = global_position.y
+	input.y = 0
 	
-		
+	#rotate_y(twist_input)
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp(pitch_pivot.rotation.x, 
