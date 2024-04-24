@@ -4,8 +4,8 @@ var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
 
-var speed = 2000
-var jump_speed = 25
+var speed = 2750
+var jump_speed = 50
 var dash_speed = 40
 var dash_cooldown = 0
 var jump_cooldown = 0 #i should add a new mesh to check if on floor, this is stupid
@@ -16,9 +16,7 @@ var cur_height
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 
 func _ready() -> void:
-	gravity_scale = 2
-	print("hey")
-
+	gravity_scale = 3
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,6 +29,10 @@ func _process(delta: float) -> void:
 	input.z = Input.get_axis("forward", "back")
 	#if not is_on_floor:
 		#input.y = - 1
+	if Input.is_action_just_pressed("debug") :
+		global_position = Vector3.ONE
+	if global_position.y < -10 :
+		global_position = Vector3.ONE
 	if Input.is_action_just_pressed("dash") and dash_cooldown == 0:
 		input *= dash_speed
 		dash_cooldown = 1
@@ -41,7 +43,7 @@ func _process(delta: float) -> void:
 		print("jump")
 		#$JumpTimer.start()
 	if not is_on_floor:
-		input *= 1.2 
+		input *= 1.1
 		
 	#print(input)
 	apply_central_force(twist_pivot.basis * input * speed * delta)
