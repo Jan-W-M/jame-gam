@@ -6,7 +6,7 @@ var pitch_input := 0.0
 
 var speed = 2750
 var jump_speed = 50
-var dash_speed = 40
+var dash_speed = 60
 var dash_cooldown = 0
 var jump_cooldown = 0 #i should add a new mesh to check if on floor, this is stupid
 var is_on_floor = false
@@ -36,6 +36,8 @@ func _process(delta: float) -> void:
 		global_position = Vector3.ONE
 	if Input.is_action_just_pressed("dash") and dash_cooldown == 0:
 		input *= dash_speed
+		if input.y != 0 :
+			input.y += 10
 		dash_cooldown = 1
 		$DashTimer.start()
 	if Input.is_action_just_pressed("jump") and is_on_floor:
@@ -47,7 +49,7 @@ func _process(delta: float) -> void:
 		input *= 1.1
 		
 	#print(input)
-	print(is_on_floor)
+	print(linear_velocity)
 	apply_central_force(twist_pivot.basis * input * speed * delta)
 	cur_height = global_position.y
 	input.y = 0
