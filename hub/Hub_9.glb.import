@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bpq4q4xuldscn"
-path="res://.godot/imported/salle_1_game_jam.glb-d3eec6efe15921e350ee66975c2aebe5.scn"
+uid="uid://21lu56wu7ls6"
+path="res://.godot/imported/Hub_9.glb-6c1aeabff1a190c5e93b078b0f485110.scn"
 
 [deps]
 
-source_file="res://salle_1_game_jam.glb"
-dest_files=["res://.godot/imported/salle_1_game_jam.glb-d3eec6efe15921e350ee66975c2aebe5.scn"]
+source_file="res://hub/Hub_9.glb"
+dest_files=["res://.godot/imported/Hub_9.glb-6c1aeabff1a190c5e93b078b0f485110.scn"]
 
 [params]
 

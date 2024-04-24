@@ -17,7 +17,7 @@ var cur_height
 
 func _ready() -> void:
 	gravity_scale = 2
-	print("her")
+	print("hey")
 
 
 
