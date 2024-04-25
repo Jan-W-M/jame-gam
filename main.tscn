@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cyvyh06gm76xp"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_mkia3"]
+[ext_resource type="PackedScene" uid="uid://dkjdwxb7li7a8" path="res://lvl1/lvl_1.tscn" id="3_40mlb"]
 [ext_resource type="PackedScene" uid="uid://cnm5ffmveeu1v" path="res://player/player.tscn" id="3_bfd3f"]
-[ext_resource type="PackedScene" uid="uid://bk45ctbhlrx31" path="res://hub/hub_9.tscn" id="3_d2ydp"]
 
 [node name="main" type="Node3D"]
 script = ExtResource("1_mkia3")
@@ -12,4 +12,4 @@ script = ExtResource("1_mkia3")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 6, 0)
 
-[node name="Hub_9" parent="." instance=ExtResource("3_d2ydp")]
+[node name="lvl1" parent="." instance=ExtResource("3_40mlb")]

@@ -17,7 +17,7 @@ func _physics_process(_delta):
 		movement_direction.z = Input.get_action_strength("back") - Input.get_action_strength("forward")
 		moving = 1
 	else:
-		moving = 0
+		moving = 0.1
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		pressed_jump.emit()
 	if Input.is_action_just_pressed("dash"):

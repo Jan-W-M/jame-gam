@@ -14,4 +14,8 @@ func _process(delta):
 
 func _on_area_3d_body_entered(body):
 	print(body)
+	if body == player :
+		var impulse = Vector3.ZERO
+		impulse.y = 50
+		player.apply_central_impulse(impulse)
 	pass # Replace with function body.
