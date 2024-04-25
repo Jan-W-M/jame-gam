@@ -54,7 +54,7 @@ func _on_pressed_jump():
 
 func _on_pressed_dash():
 	if not dash_on_cd:
-		#velocity.y += 0.5
+		velocity.y += 0.5
 		dash = dash_speed
 		dash_on_cd = true
 		dash_timer.start()

@@ -1,5 +1,5 @@
 extends StaticBody3D 
-@onready var player = $"../../Player" as RigidBody3D
+@onready var player = $"../../player" as RigidBody3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
