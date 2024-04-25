@@ -9,8 +9,8 @@ extends Node
 var jump_gravity : float = fall_gravity
 var direction : Vector3
 var velocity : Vector3
-var acceleration = 10
-var speed = 12
+var acceleration = 5
+var speed = 16
 var cam_rotation : float = 0
 
 var dash_speed = 50
@@ -19,8 +19,8 @@ var dash = 1
 var dash_cd = 1
 var dash_on_cd = false
 
-var jump_height = 4
-var apex_duration = 0.7
+var jump_height = 3
+var apex_duration = 0.5
 
 
 func _physics_process(delta):
@@ -48,11 +48,13 @@ func _on_set_cam_rotation(_cam_rotation : float):
 	cam_rotation = _cam_rotation
 
 func _on_pressed_jump():
+	velocity *= 1.2
 	velocity.y = 2 * jump_height / apex_duration
 	jump_gravity = velocity.y / apex_duration
 
 func _on_pressed_dash():
 	if not dash_on_cd:
+		#velocity.y += 0.5
 		dash = dash_speed
 		dash_on_cd = true
 		dash_timer.start()
